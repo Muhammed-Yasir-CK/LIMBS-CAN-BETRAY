@@ -7,9 +7,9 @@
       this.target = '';
       this.remainingTime = 0;
       this.limb = '';
-      this.hasSelected = false; // Track selection status
-      this.selected = false; // Track if user is selected for highlight
-      this.selectedAction = ''; // Track action for highlight
+      this.hasSelected = false; 
+      this.selected = false; 
+      this.selectedAction = ''; 
     }
   
     setTarget(target) {
@@ -46,11 +46,11 @@
   class Game {
     constructor(numParticipants, gameDuration) {
       this.users = [];
-      this.totalGameTime = gameDuration; // in seconds
-      this.cycleTime = 10; // 10 seconds
+      this.totalGameTime = gameDuration; 
+      this.cycleTime = 10; 
       this.intervalId = null;
       this.createUsers(numParticipants);
-      this.updateCycle(); // Initial cycle setup
+      this.updateCycle(); 
     }
   
     createUsers(numParticipants) {
@@ -72,7 +72,7 @@
         if (this.totalGameTime <= 0) {
           clearInterval(this.intervalId);
           this.totalGameTime = 0;
-          this.users.forEach(user => user.setRemainingTime(0)); // Set remaining time to 0
+          this.users.forEach(user => user.setRemainingTime(0)); 
           this.declareWinner();
         } else {
           this.updateCycle();
@@ -107,19 +107,19 @@
   
       const actions = ['A H', 'A L', 'B H', 'B L'];
       
-      // Implement 70% chance logic
+      
       let randomAction;
-      if (Math.random() < 0.7) {
-        // 70% chance to match user's target and limb
+      if (Math.random() < 0.6) {
+        
         randomAction = `${randomUser.target} ${randomUser.limb}`;
       } else {
-        // 30% chance to pick any action
+        
         randomAction = actions[Math.floor(Math.random() * actions.length)];
       }
   
       setTimeout(() => {
-        randomUser.selected = true; // Mark user as selected for highlight
-        randomUser.selectedAction = randomAction; // Mark action as selected for highlight
+        randomUser.selected = true; 
+        randomUser.selectedAction = randomAction; 
         const [target, limb] = randomAction.split(' ');
         randomUser.selectedTarget = target;
         randomUser.selectedLimb = limb;
@@ -127,7 +127,7 @@
         this.handleUserAction(randomUser.name, target, limb);
   
         this.updateParticipantsDisplay();
-      }, 5000); // Action between 5 to 16 seconds
+      }, 5000); 
     }
   
     displayAlert() {
@@ -135,7 +135,7 @@
       alertBox.style.display = 'block';
       setTimeout(() => {
         alertBox.style.display = 'none';
-      }, 3000); // Show alert for 3 seconds
+      }, 3000); 
     }
   
     displayCycleInfo() {
@@ -176,7 +176,7 @@
       const isCorrect = (target === user.target) && (limb === user.limb);
   
       user.updatePoints(isCorrect);
-      user.hasSelected = true; // Mark as selected for the current cycle
+      user.hasSelected = true; 
   
       this.updateParticipantsDisplay();
     }
@@ -193,7 +193,7 @@
       }
       
       setTimeout(() => {
-        gameInfo.innerHTML = ''; // Clear game finished notification after 10 seconds
+        gameInfo.innerHTML = ''; 
       }, 10000);
     }
   }
